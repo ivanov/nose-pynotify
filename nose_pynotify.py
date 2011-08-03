@@ -53,8 +53,18 @@ class PyNotify(Plugin):
 
   def finalize(self, result):
     """Called upon the completion of all tests"""
+    # Grab icon
+    if self.failures > 0 or self.errors > 0:
+      icon_name = "gtk-no"
+    elif self.successes > 0:
+      icon_name = "gtk-yes"
+    else:
+      icon_name = "dialog-question"
+
     # Generate and show the message at the end of the test
-    n = pynotify.Notification(self.cwd, self.msg % (self.successes,
-                                                    self.errors,
-                                                    self.failures))
+    n = pynotify.Notification(self.cwd,
+                              self.msg % (self.successes,
+                                          self.errors,
+                                          self.failures),
+                              icon_name)
     n.show()    
