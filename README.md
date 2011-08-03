@@ -6,13 +6,29 @@ Implements a pynotify-based notification system for nose tests.
 
 Installation
 ------------
+To install nose-pynotify, use easy_install or pip:
+
+    $ easy_install nose-pynotify
+    # or
+    $ pip install nose-pynotify
+
+Or you can get it from the PyPI page/github repo and install it manually with setuptools:
 
     $ sudo python setup.py install
 
 Usage
 -----
+To enable nose-pynotify for a single run, you can simply pass in a command-line switch:
 
-    $ nosetests --with-pynotify
+    $ nosetests ... --with-pynotify
+
+Or export the environment variable `$NOSE_WITH_PYNOTIFY` to enable the plugin by default:
+
+    $ cat ~/.zshrc
+    ...
+    export NOSE_WITH_PYNOTIFY=1
+    ...
+    $ nosetests
 
 License
 -------
