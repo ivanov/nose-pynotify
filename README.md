@@ -1,5 +1,6 @@
 nose-pynotify
 =============
+<img src="http://colinfdrake.com/images/nose.png" />
 Implements a pynotify-based notification system for nose tests.
 
 Installation
