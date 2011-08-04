@@ -39,17 +39,30 @@ class PyNotify(Plugin):
   def addError(self, test, err):
     """Called upon encountering an error"""
     # Update counter
+    n = pynotify.Notification(test.shortDescription(),
+            "Error: " + str(err[0].__name__) +
+            "\n" + str(err[1]), 'gtk-no')
+    n.show()
     self.errors += 1
 
   def addFailure(self, test, err):
     """Called upon encountering a failure"""
     # Update counter
+    n = pynotify.Notification(test.shortDescription(),
+            "Failed: " + str(err[0].__name__) +
+            "\n" + str(err[1]), 'gtk-no')
+    n.show()
     self.failures += 1
 
   def begin(a):
     """Called before running any tests, used for initialization"""
     # Initialize pynotify
     pynotify.init(os.getcwd())
+
+  def options(parser,env):
+    """Called to allow plugin to register command line options with the parser."""
+    # TODO: add option to of avoiding individual error/failure notifications
+    pass
 
   def finalize(self, result):
     """Called upon the completion of all tests"""
